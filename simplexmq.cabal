@@ -1,0 +1,658 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.36.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           simplexmq
+version:        5.4.0.7
+synopsis:       SimpleXMQ message broker
+description:    This package includes <./docs/Simplex-Messaging-Server.html server>,
+                <./docs/Simplex-Messaging-Client.html client> and
+                <./docs/Simplex-Messaging-Agent.html agent> for SMP protocols:
+                .
+                * <https://github.com/simplex-chat/simplexmq/blob/master/protocol/simplex-messaging.md SMP protocol>
+                * <https://github.com/simplex-chat/simplexmq/blob/master/protocol/agent-protocol.md SMP agent protocol>
+                .
+                See <https://github.com/simplex-chat/simplex-chat terminal chat prototype> built with SimpleXMQ broker.
+category:       Chat, Network, Web, System, Cryptography
+homepage:       https://github.com/simplex-chat/simplexmq#readme
+author:         simplex.chat
+maintainer:     chat@simplex.chat
+copyright:      2020-2022 simplex.chat
+license:        AGPL-3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+    cbits/sha512.h
+    cbits/sntrup761.h
+
+flag swift
+  description: Enable swift JSON format
+  manual: True
+  default: False
+
+library
+  exposed-modules:
+      Simplex.FileTransfer.Agent
+      Simplex.FileTransfer.Chunks
+      Simplex.FileTransfer.Client
+      Simplex.FileTransfer.Client.Agent
+      Simplex.FileTransfer.Client.Main
+      Simplex.FileTransfer.Client.Presets
+      Simplex.FileTransfer.Crypto
+      Simplex.FileTransfer.Description
+      Simplex.FileTransfer.Protocol
+      Simplex.FileTransfer.Server
+      Simplex.FileTransfer.Server.Env
+      Simplex.FileTransfer.Server.Main
+      Simplex.FileTransfer.Server.Stats
+      Simplex.FileTransfer.Server.Store
+      Simplex.FileTransfer.Server.StoreLog
+      Simplex.FileTransfer.Transport
+      Simplex.FileTransfer.Types
+      Simplex.FileTransfer.Util
+      Simplex.Messaging.Agent
+      Simplex.Messaging.Agent.Client
+      Simplex.Messaging.Agent.Env.SQLite
+      Simplex.Messaging.Agent.Lock
+      Simplex.Messaging.Agent.NtfSubSupervisor
+      Simplex.Messaging.Agent.Protocol
+      Simplex.Messaging.Agent.QueryString
+      Simplex.Messaging.Agent.RetryInterval
+      Simplex.Messaging.Agent.Server
+      Simplex.Messaging.Agent.Store
+      Simplex.Messaging.Agent.Store.SQLite
+      Simplex.Messaging.Agent.Store.SQLite.Common
+      Simplex.Messaging.Agent.Store.SQLite.DB
+      Simplex.Messaging.Agent.Store.SQLite.Migrations
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220101_initial
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220301_snd_queue_keys
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220322_notifications
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220608_v2
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220625_v2_ntf_mode
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220811_onion_hosts
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220817_connection_ntfs
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220905_commands
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20220915_connection_queues
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230110_users
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230117_fkey_indexes
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230120_delete_errors
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230217_server_key_hash
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230223_files
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230320_retry_state
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230401_snd_files
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230510_files_pending_replicas_indexes
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230516_encrypted_rcv_message_hashes
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230531_switch_status
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230615_ratchet_sync
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230701_delivery_receipts
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230720_delete_expired_messages
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230722_indexes
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230814_indexes
+      Simplex.Messaging.Agent.Store.SQLite.Migrations.M20230829_crypto_files
+      Simplex.Messaging.Agent.TAsyncs
+      Simplex.Messaging.Agent.TRcvQueues
+      Simplex.Messaging.Client
+      Simplex.Messaging.Client.Agent
+      Simplex.Messaging.Crypto
+      Simplex.Messaging.Crypto.File
+      Simplex.Messaging.Crypto.Lazy
+      Simplex.Messaging.Crypto.Ratchet
+      Simplex.Messaging.Crypto.SNTRUP761
+      Simplex.Messaging.Crypto.SNTRUP761.Bindings
+      Simplex.Messaging.Crypto.SNTRUP761.Bindings.Defines
+      Simplex.Messaging.Crypto.SNTRUP761.Bindings.FFI
+      Simplex.Messaging.Crypto.SNTRUP761.Bindings.RNG
+      Simplex.Messaging.Encoding
+      Simplex.Messaging.Encoding.String
+      Simplex.Messaging.Notifications.Client
+      Simplex.Messaging.Notifications.Protocol
+      Simplex.Messaging.Notifications.Server
+      Simplex.Messaging.Notifications.Server.Env
+      Simplex.Messaging.Notifications.Server.Main
+      Simplex.Messaging.Notifications.Server.Push.APNS
+      Simplex.Messaging.Notifications.Server.Push.APNS.Internal
+      Simplex.Messaging.Notifications.Server.Stats
+      Simplex.Messaging.Notifications.Server.Store
+      Simplex.Messaging.Notifications.Server.StoreLog
+      Simplex.Messaging.Notifications.Transport
+      Simplex.Messaging.Notifications.Types
+      Simplex.Messaging.Parsers
+      Simplex.Messaging.Protocol
+      Simplex.Messaging.Server
+      Simplex.Messaging.Server.CLI
+      Simplex.Messaging.Server.Control
+      Simplex.Messaging.Server.Env.STM
+      Simplex.Messaging.Server.Expiration
+      Simplex.Messaging.Server.Main
+      Simplex.Messaging.Server.MsgStore
+      Simplex.Messaging.Server.MsgStore.STM
+      Simplex.Messaging.Server.QueueStore
+      Simplex.Messaging.Server.QueueStore.STM
+      Simplex.Messaging.Server.Stats
+      Simplex.Messaging.Server.StoreLog
+      Simplex.Messaging.TMap
+      Simplex.Messaging.Transport
+      Simplex.Messaging.Transport.Buffer
+      Simplex.Messaging.Transport.Client
+      Simplex.Messaging.Transport.Credentials
+      Simplex.Messaging.Transport.HTTP2
+      Simplex.Messaging.Transport.HTTP2.Client
+      Simplex.Messaging.Transport.HTTP2.File
+      Simplex.Messaging.Transport.HTTP2.Server
+      Simplex.Messaging.Transport.KeepAlive
+      Simplex.Messaging.Transport.Server
+      Simplex.Messaging.Transport.WebSockets
+      Simplex.Messaging.Util
+      Simplex.Messaging.Version
+      Simplex.RemoteControl.Client
+      Simplex.RemoteControl.Discovery
+      Simplex.RemoteControl.Discovery.Multicast
+      Simplex.RemoteControl.Invitation
+      Simplex.RemoteControl.Types
+  other-modules:
+      Paths_simplexmq
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Werror=incomplete-patterns -Wredundant-constraints -Wincomplete-record-updates -Wincomplete-uni-patterns -Wunused-type-patterns
+  include-dirs:
+      cbits
+  c-sources:
+      cbits/sha512.c
+      cbits/sntrup761.c
+  extra-libraries:
+      crypto
+  build-depends:
+      aeson ==2.2.*
+    , ansi-terminal >=0.10 && <0.12
+    , asn1-encoding ==0.9.*
+    , asn1-types ==0.3.*
+    , async ==2.2.*
+    , attoparsec ==0.14.*
+    , base >=4.14 && <5
+    , base64-bytestring >=1.0 && <1.3
+    , bytestring ==0.11.*
+    , case-insensitive ==1.2.*
+    , composition ==1.0.*
+    , constraints >=0.12 && <0.14
+    , containers ==0.6.*
+    , cryptonite ==0.30.*
+    , cryptostore ==0.2.*
+    , data-default ==0.7.*
+    , direct-sqlcipher ==2.3.*
+    , directory ==1.3.*
+    , filepath ==1.4.*
+    , hourglass ==0.2.*
+    , http-types ==0.12.*
+    , http2 >=4.2.2 && <4.3
+    , ini ==0.4.1
+    , iproute ==1.7.*
+    , iso8601-time ==0.1.*
+    , memory ==0.18.*
+    , mtl ==2.3.*
+    , network >=3.1.2.7 && <3.2
+    , network-info ==0.2.*
+    , network-transport ==0.5.6
+    , network-udp ==0.0.*
+    , optparse-applicative >=0.15 && <0.17
+    , process ==1.6.*
+    , random >=1.1 && <1.3
+    , simple-logger ==0.1.*
+    , socks ==0.6.*
+    , sqlcipher-simple ==0.4.*
+    , stm ==2.5.*
+    , template-haskell >=2.16 && <2.21
+    , temporary ==1.3.*
+    , text ==2.0.*
+    , time ==1.9.*
+    , time-compat ==1.9.*
+    , time-manager ==0.0.*
+    , tls >=1.6.0 && <1.7
+    , transformers ==0.6.*
+    , unliftio ==0.2.*
+    , unliftio-core ==0.2.*
+    , websockets ==0.12.*
+    , x509 ==1.7.*
+    , x509-store ==1.6.*
+    , x509-validation ==1.6.*
+    , yaml ==0.11.*
+  default-language: Haskell2010
+  if flag(swift)
+    cpp-options: -DswiftJSON
+
+executable ntf-server
+  main-is: Main.hs
+  other-modules:
+      Paths_simplexmq
+  hs-source-dirs:
+      apps/ntf-server
+  ghc-options: -Wall -Wcompat -Werror=incomplete-patterns -Wredundant-constraints -Wincomplete-record-updates -Wincomplete-uni-patterns -Wunused-type-patterns -threaded -rtsopts
+  build-depends:
+      aeson ==2.2.*
+    , ansi-terminal >=0.10 && <0.12
+    , asn1-encoding ==0.9.*
+    , asn1-types ==0.3.*
+    , async ==2.2.*
+    , attoparsec ==0.14.*
+    , base >=4.14 && <5
+    , base64-bytestring >=1.0 && <1.3
+    , bytestring ==0.11.*
+    , case-insensitive ==1.2.*
+    , composition ==1.0.*
+    , constraints >=0.12 && <0.14
+    , containers ==0.6.*
+    , cryptonite ==0.30.*
+    , cryptostore ==0.2.*
+    , data-default ==0.7.*
+    , direct-sqlcipher ==2.3.*
+    , directory ==1.3.*
+    , filepath ==1.4.*
+    , hourglass ==0.2.*
+    , http-types ==0.12.*
+    , http2 >=4.2.2 && <4.3
+    , ini ==0.4.1
+    , iproute ==1.7.*
+    , iso8601-time ==0.1.*
+    , memory ==0.18.*
+    , mtl ==2.3.*
+    , network >=3.1.2.7 && <3.2
+    , network-info ==0.2.*
+    , network-transport ==0.5.6
+    , network-udp ==0.0.*
+    , optparse-applicative >=0.15 && <0.17
+    , process ==1.6.*
+    , random >=1.1 && <1.3
+    , simple-logger ==0.1.*
+    , simplexmq
+    , socks ==0.6.*
+    , sqlcipher-simple ==0.4.*
+    , stm ==2.5.*
+    , template-haskell >=2.16 && <2.21
+    , temporary ==1.3.*
+    , text ==2.0.*
+    , time ==1.9.*
+    , time-compat ==1.9.*
+    , time-manager ==0.0.*
+    , tls >=1.6.0 && <1.7
+    , transformers ==0.6.*
+    , unliftio ==0.2.*
+    , unliftio-core ==0.2.*
+    , websockets ==0.12.*
+    , x509 ==1.7.*
+    , x509-store ==1.6.*
+    , x509-validation ==1.6.*
+    , yaml ==0.11.*
+  default-language: Haskell2010
+  if flag(swift)
+    cpp-options: -DswiftJSON
+
+executable smp-agent
+  main-is: Main.hs
+  other-modules:
+      Paths_simplexmq
+  hs-source-dirs:
+      apps/smp-agent
+  ghc-options: -Wall -Wcompat -Werror=incomplete-patterns -Wredundant-constraints -Wincomplete-record-updates -Wincomplete-uni-patterns -Wunused-type-patterns -threaded -rtsopts
+  build-depends:
+      aeson ==2.2.*
+    , ansi-terminal >=0.10 && <0.12
+    , asn1-encoding ==0.9.*
+    , asn1-types ==0.3.*
+    , async ==2.2.*
+    , attoparsec ==0.14.*
+    , base >=4.14 && <5
+    , base64-bytestring >=1.0 && <1.3
+    , bytestring ==0.11.*
+    , case-insensitive ==1.2.*
+    , composition ==1.0.*
+    , constraints >=0.12 && <0.14
+    , containers ==0.6.*
+    , cryptonite ==0.30.*
+    , cryptostore ==0.2.*
+    , data-default ==0.7.*
+    , direct-sqlcipher ==2.3.*
+    , directory ==1.3.*
+    , filepath ==1.4.*
+    , hourglass ==0.2.*
+    , http-types ==0.12.*
+    , http2 >=4.2.2 && <4.3
+    , ini ==0.4.1
+    , iproute ==1.7.*
+    , iso8601-time ==0.1.*
+    , memory ==0.18.*
+    , mtl ==2.3.*
+    , network >=3.1.2.7 && <3.2
+    , network-info ==0.2.*
+    , network-transport ==0.5.6
+    , network-udp ==0.0.*
+    , optparse-applicative >=0.15 && <0.17
+    , process ==1.6.*
+    , random >=1.1 && <1.3
+    , simple-logger ==0.1.*
+    , simplexmq
+    , socks ==0.6.*
+    , sqlcipher-simple ==0.4.*
+    , stm ==2.5.*
+    , template-haskell >=2.16 && <2.21
+    , temporary ==1.3.*
+    , text ==2.0.*
+    , time ==1.9.*
+    , time-compat ==1.9.*
+    , time-manager ==0.0.*
+    , tls >=1.6.0 && <1.7
+    , transformers ==0.6.*
+    , unliftio ==0.2.*
+    , unliftio-core ==0.2.*
+    , websockets ==0.12.*
+    , x509 ==1.7.*
+    , x509-store ==1.6.*
+    , x509-validation ==1.6.*
+    , yaml ==0.11.*
+  default-language: Haskell2010
+  if flag(swift)
+    cpp-options: -DswiftJSON
+
+executable smp-server
+  main-is: Main.hs
+  other-modules:
+      Paths_simplexmq
+  hs-source-dirs:
+      apps/smp-server
+  ghc-options: -Wall -Wcompat -Werror=incomplete-patterns -Wredundant-constraints -Wincomplete-record-updates -Wincomplete-uni-patterns -Wunused-type-patterns -threaded -rtsopts
+  build-depends:
+      aeson ==2.2.*
+    , ansi-terminal >=0.10 && <0.12
+    , asn1-encoding ==0.9.*
+    , asn1-types ==0.3.*
+    , async ==2.2.*
+    , attoparsec ==0.14.*
+    , base >=4.14 && <5
+    , base64-bytestring >=1.0 && <1.3
+    , bytestring ==0.11.*
+    , case-insensitive ==1.2.*
+    , composition ==1.0.*
+    , constraints >=0.12 && <0.14
+    , containers ==0.6.*
+    , cryptonite ==0.30.*
+    , cryptostore ==0.2.*
+    , data-default ==0.7.*
+    , direct-sqlcipher ==2.3.*
+    , directory ==1.3.*
+    , filepath ==1.4.*
+    , hourglass ==0.2.*
+    , http-types ==0.12.*
+    , http2 >=4.2.2 && <4.3
+    , ini ==0.4.1
+    , iproute ==1.7.*
+    , iso8601-time ==0.1.*
+    , memory ==0.18.*
+    , mtl ==2.3.*
+    , network >=3.1.2.7 && <3.2
+    , network-info ==0.2.*
+    , network-transport ==0.5.6
+    , network-udp ==0.0.*
+    , optparse-applicative >=0.15 && <0.17
+    , process ==1.6.*
+    , random >=1.1 && <1.3
+    , simple-logger ==0.1.*
+    , simplexmq
+    , socks ==0.6.*
+    , sqlcipher-simple ==0.4.*
+    , stm ==2.5.*
+    , template-haskell >=2.16 && <2.21
+    , temporary ==1.3.*
+    , text ==2.0.*
+    , time ==1.9.*
+    , time-compat ==1.9.*
+    , time-manager ==0.0.*
+    , tls >=1.6.0 && <1.7
+    , transformers ==0.6.*
+    , unliftio ==0.2.*
+    , unliftio-core ==0.2.*
+    , websockets ==0.12.*
+    , x509 ==1.7.*
+    , x509-store ==1.6.*
+    , x509-validation ==1.6.*
+    , yaml ==0.11.*
+  default-language: Haskell2010
+  if flag(swift)
+    cpp-options: -DswiftJSON
+
+executable xftp
+  main-is: Main.hs
+  other-modules:
+      Paths_simplexmq
+  hs-source-dirs:
+      apps/xftp
+  ghc-options: -Wall -Wcompat -Werror=incomplete-patterns -Wredundant-constraints -Wincomplete-record-updates -Wincomplete-uni-patterns -Wunused-type-patterns -threaded -rtsopts
+  build-depends:
+      aeson ==2.2.*
+    , ansi-terminal >=0.10 && <0.12
+    , asn1-encoding ==0.9.*
+    , asn1-types ==0.3.*
+    , async ==2.2.*
+    , attoparsec ==0.14.*
+    , base >=4.14 && <5
+    , base64-bytestring >=1.0 && <1.3
+    , bytestring ==0.11.*
+    , case-insensitive ==1.2.*
+    , composition ==1.0.*
+    , constraints >=0.12 && <0.14
+    , containers ==0.6.*
+    , cryptonite ==0.30.*
+    , cryptostore ==0.2.*
+    , data-default ==0.7.*
+    , direct-sqlcipher ==2.3.*
+    , directory ==1.3.*
+    , filepath ==1.4.*
+    , hourglass ==0.2.*
+    , http-types ==0.12.*
+    , http2 >=4.2.2 && <4.3
+    , ini ==0.4.1
+    , iproute ==1.7.*
+    , iso8601-time ==0.1.*
+    , memory ==0.18.*
+    , mtl ==2.3.*
+    , network >=3.1.2.7 && <3.2
+    , network-info ==0.2.*
+    , network-transport ==0.5.6
+    , network-udp ==0.0.*
+    , optparse-applicative >=0.15 && <0.17
+    , process ==1.6.*
+    , random >=1.1 && <1.3
+    , simple-logger ==0.1.*
+    , simplexmq
+    , socks ==0.6.*
+    , sqlcipher-simple ==0.4.*
+    , stm ==2.5.*
+    , template-haskell >=2.16 && <2.21
+    , temporary ==1.3.*
+    , text ==2.0.*
+    , time ==1.9.*
+    , time-compat ==1.9.*
+    , time-manager ==0.0.*
+    , tls >=1.6.0 && <1.7
+    , transformers ==0.6.*
+    , unliftio ==0.2.*
+    , unliftio-core ==0.2.*
+    , websockets ==0.12.*
+    , x509 ==1.7.*
+    , x509-store ==1.6.*
+    , x509-validation ==1.6.*
+    , yaml ==0.11.*
+  default-language: Haskell2010
+  if flag(swift)
+    cpp-options: -DswiftJSON
+
+executable xftp-server
+  main-is: Main.hs
+  other-modules:
+      Paths_simplexmq
+  hs-source-dirs:
+      apps/xftp-server
+  ghc-options: -Wall -Wcompat -Werror=incomplete-patterns -Wredundant-constraints -Wincomplete-record-updates -Wincomplete-uni-patterns -Wunused-type-patterns -threaded -rtsopts
+  build-depends:
+      aeson ==2.2.*
+    , ansi-terminal >=0.10 && <0.12
+    , asn1-encoding ==0.9.*
+    , asn1-types ==0.3.*
+    , async ==2.2.*
+    , attoparsec ==0.14.*
+    , base >=4.14 && <5
+    , base64-bytestring >=1.0 && <1.3
+    , bytestring ==0.11.*
+    , case-insensitive ==1.2.*
+    , composition ==1.0.*
+    , constraints >=0.12 && <0.14
+    , containers ==0.6.*
+    , cryptonite ==0.30.*
+    , cryptostore ==0.2.*
+    , data-default ==0.7.*
+    , direct-sqlcipher ==2.3.*
+    , directory ==1.3.*
+    , filepath ==1.4.*
+    , hourglass ==0.2.*
+    , http-types ==0.12.*
+    , http2 >=4.2.2 && <4.3
+    , ini ==0.4.1
+    , iproute ==1.7.*
+    , iso8601-time ==0.1.*
+    , memory ==0.18.*
+    , mtl ==2.3.*
+    , network >=3.1.2.7 && <3.2
+    , network-info ==0.2.*
+    , network-transport ==0.5.6
+    , network-udp ==0.0.*
+    , optparse-applicative >=0.15 && <0.17
+    , process ==1.6.*
+    , random >=1.1 && <1.3
+    , simple-logger ==0.1.*
+    , simplexmq
+    , socks ==0.6.*
+    , sqlcipher-simple ==0.4.*
+    , stm ==2.5.*
+    , template-haskell >=2.16 && <2.21
+    , temporary ==1.3.*
+    , text ==2.0.*
+    , time ==1.9.*
+    , time-compat ==1.9.*
+    , time-manager ==0.0.*
+    , tls >=1.6.0 && <1.7
+    , transformers ==0.6.*
+    , unliftio ==0.2.*
+    , unliftio-core ==0.2.*
+    , websockets ==0.12.*
+    , x509 ==1.7.*
+    , x509-store ==1.6.*
+    , x509-validation ==1.6.*
+    , yaml ==0.11.*
+  default-language: Haskell2010
+  if flag(swift)
+    cpp-options: -DswiftJSON
+
+test-suite simplexmq-test
+  type: exitcode-stdio-1.0
+  main-is: Test.hs
+  other-modules:
+      AgentTests
+      AgentTests.ConnectionRequestTests
+      AgentTests.DoubleRatchetTests
+      AgentTests.FunctionalAPITests
+      AgentTests.MigrationTests
+      AgentTests.NotificationTests
+      AgentTests.SchemaDump
+      AgentTests.SQLiteTests
+      CLITests
+      CoreTests.BatchingTests
+      CoreTests.CryptoFileTests
+      CoreTests.CryptoTests
+      CoreTests.EncodingTests
+      CoreTests.ProtocolErrorTests
+      CoreTests.RetryIntervalTests
+      CoreTests.UtilTests
+      CoreTests.VersionRangeTests
+      FileDescriptionTests
+      NtfClient
+      NtfServerTests
+      RemoteControl
+      ServerTests
+      SMPAgentClient
+      SMPClient
+      XFTPAgent
+      XFTPCLI
+      XFTPClient
+      XFTPServerTests
+      Paths_simplexmq
+  hs-source-dirs:
+      tests
+  ghc-options: -Wall -Wcompat -Werror=incomplete-patterns -Wredundant-constraints -Wincomplete-record-updates -Wincomplete-uni-patterns -Wunused-type-patterns
+  build-depends:
+      HUnit ==1.6.*
+    , QuickCheck ==2.14.*
+    , aeson ==2.2.*
+    , ansi-terminal >=0.10 && <0.12
+    , asn1-encoding ==0.9.*
+    , asn1-types ==0.3.*
+    , async ==2.2.*
+    , attoparsec ==0.14.*
+    , base >=4.14 && <5
+    , base64-bytestring >=1.0 && <1.3
+    , bytestring ==0.11.*
+    , case-insensitive ==1.2.*
+    , composition ==1.0.*
+    , constraints >=0.12 && <0.14
+    , containers ==0.6.*
+    , cryptonite ==0.30.*
+    , cryptostore ==0.2.*
+    , data-default ==0.7.*
+    , deepseq ==1.4.*
+    , direct-sqlcipher ==2.3.*
+    , directory ==1.3.*
+    , filepath ==1.4.*
+    , generic-random ==1.5.*
+    , hourglass ==0.2.*
+    , hspec ==2.11.*
+    , hspec-core ==2.11.*
+    , http-types ==0.12.*
+    , http2 >=4.2.2 && <4.3
+    , ini ==0.4.1
+    , iproute ==1.7.*
+    , iso8601-time ==0.1.*
+    , main-tester ==0.2.*
+    , memory ==0.18.*
+    , mtl ==2.3.*
+    , network >=3.1.2.7 && <3.2
+    , network-info ==0.2.*
+    , network-transport ==0.5.6
+    , network-udp ==0.0.*
+    , optparse-applicative >=0.15 && <0.17
+    , process ==1.6.*
+    , random >=1.1 && <1.3
+    , silently ==1.2.*
+    , simple-logger ==0.1.*
+    , simplexmq
+    , socks ==0.6.*
+    , sqlcipher-simple ==0.4.*
+    , stm ==2.5.*
+    , template-haskell >=2.16 && <2.21
+    , temporary ==1.3.*
+    , text ==2.0.*
+    , time ==1.9.*
+    , time-compat ==1.9.*
+    , time-manager ==0.0.*
+    , timeit ==2.0.*
+    , tls >=1.6.0 && <1.7
+    , transformers ==0.6.*
+    , unliftio ==0.2.*
+    , unliftio-core ==0.2.*
+    , websockets ==0.12.*
+    , x509 ==1.7.*
+    , x509-store ==1.6.*
+    , x509-validation ==1.6.*
+    , yaml ==0.11.*
+  default-language: Haskell2010
+  if flag(swift)
+    cpp-options: -DswiftJSON
